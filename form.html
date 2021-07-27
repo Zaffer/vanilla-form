@@ -7,8 +7,10 @@
 </head>
 
 <body>
+    <br>
+    <br>
     <div class="mdc-slider mdc-slider--discrete mdc-slider--tick-marks">
-        <input id="inputDesks" class="mdc-slider__input" type="range" min="0" max="500" value="50" name="volume" step="1">
+        <input id="deskSlider" oninput="printQuote();" class="mdc-slider__input" type="range" min="0" max="7" value="2" name="volume" step="1">
         <div class="mdc-slider__track">
             <div class="mdc-slider__track--inactive"></div>
             <div class="mdc-slider__track--active">
@@ -39,7 +41,7 @@
             <div class="mdc-slider__thumb-knob"></div>
         </div>
     </div>
-    <!-- <input id="input" type="range" min="0" value="0" max="6" step="1"> -->
+    <!-- <input id="deskSlider" type="range" min="0" value="3" max="6" step="1"> -->
     <div id="output"></div>
     <button class="mdc-button foo-button" onclick="printQuote();">
         <div class="mdc-button__ripple"></div>
@@ -51,28 +53,46 @@
     </script>
     <script>
         mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
-        const MDCFoo = mdc.slider.MDCSlider;
-        const MDCFooFoundation = mdc.slider.MDCSliderFoundation;
-        const foo = new MDCFoo(document.querySelector('.mdc-slider'));
-
+        const MDCSlider = mdc.slider.MDCSlider;
+        const MDCSliderFoundation = mdc.slider.MDCSliderFoundation;
+        const deskSliderMaterial = new MDCSlider(document.querySelector('.mdc-slider'));
     </script>
     <script>
-        var values = [1, 3, 5, 10, 20, 50, 100];
+        values = [1, 3, 5, 10, 20, 50, 100];
 
-        var input = document.getElementById('input'),
-            output = document.getElementById('output');
-        input.oninput = function () {
-            output.innerHTML = values[this.value];
-        };
-        input.oninput();
+        // foo.input = function () {
+        //     $('#output').html(values[this.value]);
+        // };
+        // foo.input();
 
+        $('#deskSlider').get(0).addEventListener("input",
+            function () {
+                numDesks = $('#deskSlider').val();
+                console.log(numDesks);
+                $('#output').html(values[numDesks]);
+            }
+        );
+
+
+        // $('#input')[0].oninput = function () { //this is not working, maybe cos eventlistener stolen be mdc...
+        //     $('#output').html(values[this.value]);
+        // };
+        // $('#input')[0].oninput();
+
+
+        // $('#input')[0].oninput = function () {
+        //     numDesks = $('input#input').val();
+        //     console.log(numDesks);
+        //     $('#output').html(values[numDesks]);
+        // };
+        // $('#input')[0].oninput();
 
         function printQuote() {
-            numDesks = $('input#inputDesks').val();
+            numDesks = $('#deskSlider').val();
             console.log(numDesks);
-            $('#output').html(numDesks);
-
+            $('#output').html(values[numDesks]);
         };
+
     </script>
 </footer>
 

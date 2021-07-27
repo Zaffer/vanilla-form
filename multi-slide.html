@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1>Pricing Calculator</h1>
+        <hr>
+        <br>
+
+        <h2>Packages: <span id="output-packages"></span></h2>
+
+        <input id="input-desks" type="range" min="0" max="5000" value="1" tabindex="0">
+        <br>
+        <label for="input-desks">Desks: </label>
+        <br>
+        <br>
+
+        <input id="input-rooms" type="range" min="0" max="500" value="1" tabindex="0">
+        <br>
+        <label for="input-rooms">Rooms: </label>
+        <br>
+        <br>
+
+        <input id="input-receptions" type="range" min="0" max="100" value="1" tabindex="0">
+        <br>
+        <label for="input-receptions">Receptions: </label>
+        <br>
+        <br>
+
+        <div id="output-total"></div>
+
+        <br>
+
+        <!-- Accent-colored raised button with ripple -->
+        <button id="go-button">
+            Let's Go!
+        </button>
+
+    </center>
+
+</body>
+
+<footer>
+
+    <script>
+
+        var deskCount = $('#input-desks').val();
+        var roomCount = $('#input-package').val() * 10;
+        var receptionCount = $('#input-package').val() * 2;
+
+
+        $('#input-desks')[0].oninput = function () {
+
+            deskCount = $('#input-desks').val();
+            
+            // $('#input-desks').val(deskCount);
+            $('#input-rooms').val(roomCount);
+            $('#input-receptions').val(receptionCount);
+
+            $('#output-packages').html(deskCount * roomCount * receptionCount);
+
+        };
+        $('#input-rooms')[0].oninput = function () {
+
+            deskCount = $('#input-package').val() * 100;
+            roomCount = $('#input-package').val() * 10;
+            receptionCount = $('#input-package').val() * 2;
+
+            $('#input-desks').val(deskCount);
+            // $('#input-rooms').val(roomCount);
+            $('#input-receptions').val(receptionCount);
+
+            $('#output-packages').html(deskCount * roomCount * receptionCount);
+
+        };
+        $('#input-receptions')[0].oninput = function () {
+
+            deskCount = $('#input-package').val() * 100;
+            roomCount = $('#input-package').val() * 10;
+            receptionCount = $('#input-package').val() * 2;
+
+            $('#input-desks').val(deskCount);
+            $('#input-rooms').val(roomCount);
+            // $('#input-receptions').val(receptionCount);
+
+            $('#output-packages').html(deskCount * roomCount * receptionCount);
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $('#input')[0].oninput();
+
+
+
+
+
+
+
+
+        // $('#input')[0].oninput = function () {
+        //     numDesks = $('input#input').val();
+        //     console.log(numDesks);
+        //     $('#output').html(values[numDesks]);
+        // };
+        // $('#input')[0].oninput();
+
+
+        // $('input:eq(1)')[0].oninput = function () {
+        //     numDesks = $('input:eq(1)').val();
+        //     console.log(numDesks);
+        //     $('#output').html(values[numDesks]);
+        // };
+        // // $('#input')[1].oninput();
+
+        // function printQuote() {
+        //     numDesks = $('input#input').val();
+        //     console.log(numDesks);
+        //     $('#output').html(numDesks);
+        // };
+
+    </script>
+</footer>
+
+</html>
