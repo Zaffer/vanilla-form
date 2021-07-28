@@ -1,127 +1,176 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-<center>
-    <h1>QuickDesk Pricing Calculator</h1>
-    <hr>
-    <br>
-    <h2>Resources</h2>
-    <input id="input-desks" type="range" min="0" max="13" value="2">
-    <br>
-    <label for="input-desks">Desks: <span id="output-desks"></span></label>
-    <br>
-    <br>
-    <input id="input-rooms" type="range" min="0" max="13" value="2">
-    <br>
-    <label for="input-rooms">Rooms: <span id="output-rooms"></span></label>
-    <br>
-    <br>
-    <input id="input-receptions" type="range" min="0" max="13" value="2">
-    <br>
-    <label for="input-receptions">Receptions: <span id="output-receptions"></span></label>
-    <br>
-    <br>
-    <p>Packages needed: <span id="output-packages"></span></p>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-    <h2>Options</h2>
-    <input type="checkbox" id="check-whitelabel" name="whitelabel" value="true">
-    <label id="check-whitelabel-label" for="check-whitelabel">White Labeling</label>
-    <span class="mdl-tooltip" for="check-whitelabel-label">Custom logo and colour scheme</span>
-    <!-- TODO description and better tooltip -->
-    <br>
-    <br>
-    <input type="checkbox" id="check-stickers" name="stickers" value="true">
-    <label id="check-stickers-label" for="check-stickers">Printed Stickers</label>
-    <span class="mdl-tooltip" for="check-stickers-label">Scratch resistant vinyl stickers</span>
-    <br>
-    <br>
-    <input type="checkbox" id="check-installation" name="installation" value="true">
-    <label id="check-installation-label" for="check-installation">On-site Installation</label>
-    <span class="mdl-tooltip" for="check-installation-label">Include installation &#40;major cities only&#41;</span>
-    <br>
-    <br>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    <h2>Total</h2>
-    <p>
-        Price <span id="output-price-total"></span> / month
-    </p>
-    <br>
-    <br>
-    <br>
+        .flex-container>div {
+            min-width: 300px;
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+    </style>
 
+    <center>
+        <h1>QuickDesk Pricing Calculator</h1>
+        <hr>
+        <br>
+        <div class="flex-container">
+            <div>
+                <h2>Resources</h2>
+                <label for="input-desks">
+                    <input id="input-desks" class="mdl-slider mdl-js-slider" type="range" min="0" max="13" value="2">
+                    <br>
+                    Desks: <span id="output-desks"></span>
+                </label>
+                <br>
+                <br>
+                <label for="input-rooms">
+                    <input id="input-rooms" class="mdl-slider mdl-js-slider" type="range" min="0" max="13" value="2">
+                    <br>
+                    Rooms: <span id="output-rooms"></span>
+                </label>
+                <br>
+                <br>
+                <label for="input-receptions">
+                    <input id="input-receptions" class="mdl-slider mdl-js-slider" type="range" min="0" max="13" value="2">
+                    <br>
+                    Receptions: <span id="output-receptions"></span>
+                </label>
+                <br>
+                <br>
+                <h4>Packages needed: <span id="output-packages"></span></h4>
 
 
-    <!-- <button id="go-button">
+            </div>
+            <div>
+                <h2>Options</h2>
+
+                <label id="check-whitelabel-label" class="mdl-switch mdl-js-switch mdl-js-ripple-effect"
+                    for="check-whitelabel">
+                    <span class="mdl-switch__label"></span>
+                    <input id="check-whitelabel" class="mdl-switch__input" type="checkbox" name="whitelabel"
+                        value="true">
+                    White Labeling
+                    <span class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="check-whitelabel-label">Custom logo and colour scheme</span>
+                </label>
+                <!-- TODO description and better tooltip -->
+                <br>
+                <br>
+                <label id="check-stickers-label" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="check-stickers">
+                    <span class="mdl-switch__label"></span>
+                    <input id="check-stickers" class="mdl-switch__input" type="checkbox" name="stickers" value="true">
+                    Printed Stickers
+                    <span class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="check-stickers-label">Scratch resistant vinyl stickers</span>
+                </label>
+                <br>
+                <br>
+                <label id="check-installation-label" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="check-installation">
+                    <span class="mdl-switch__label"></span>
+                    <input id="check-installation" class="mdl-switch__input" type="checkbox"  name="installation" value="true">
+                    On-site Installation
+                    <span class="mdl-tooltip mdl-tooltip--large mdl-tooltip mdl-tooltip--right" for="check-installation-label">Include installation &#40;major cities
+                        only&#41;</span>
+                </label>
+                <br>
+                <br>
+            </div>
+            <div>
+                <h2>Total</h2>
+                <p>
+                    Price <span id="output-price-total"></span> / month
+                </p>
+            </div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+
+
+
+        <!-- <button id="go-button">
             Let's Go!
         </button> -->
 
-</center>
-
-<script>
-
-    const deskValues = ["I'm not sure.", 100, 200, 300, 400, 500, 1000, 1500, 2000, 2500, 3000, 4000, "5000+"];
-    const roomValues = ["I'm not sure.", 10, 20, 30, 40, 50, 100, 150, 200, 250, 300, "500+"];
-    const receptionValues = ["I'm not sure.", 2, 4, 6, 8, 10, 20, 30, 40, 50, 60, 80, 100, "100+"];
-
-    var packageCount = 0;
-
-    function updateElement(inputID, outputID, values) {
-        $('#' + outputID).html(values[$('#' + inputID).val()]);
-    };
-    function updatePackages() {
-        packageCount = Math.max(
-            $('#input-desks').val(),
-            $('#input-rooms').val(),
-            $('#input-receptions').val()
-        );
-        $('#output-packages').html(packageCount); // TODO make this a values call too, packages still linear
-    };
-    function updatePrice() {
-        // packageCount = $('#output-packages').val();
-        totalPrice = (packageCount * 3000);
-        extras = 0;
-        if($('#check-whitelabel').prop("checked")) extras += 5000;
-        if($('#check-stickers').prop("checked")) extras += (100*packageCount);
-        if($('#check-installation').prop("checked")) extras += (2000*(packageCount/2));
-
-        totalPrice += extras;
-
-        $('#output-price-total').html(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-    };
-
-    $('#input-desks')[0].oninput = function () {
-        updateElement('input-desks', 'output-desks', deskValues);
-        updatePackages();
-        updatePrice();
-    };
-
-    $('#input-rooms')[0].oninput = function () {
-        updateElement('input-rooms', 'output-rooms', roomValues);
-        updatePackages();
-        updatePrice();
-    };
-
-    $('#input-receptions')[0].oninput = function () {
-        updateElement('input-receptions', 'output-receptions', receptionValues);
-        updatePackages();
-        updatePrice();
-    };
-    $('#input-desks')[0].oninput();
-    $('#input-rooms')[0].oninput();
-    $('#input-receptions')[0].oninput();
-    $('#check-whitelabel')[0].oninput = function () {
-        updatePrice();
-    };
-    $('#check-stickers')[0].oninput = function () {
-        updatePrice();
-    };
-    $('#check-installation')[0].oninput = function () {
-        updatePrice();
-    };
+    </center>
 
 
+    <script>
 
-</script>
+        const deskValues = ["I'm not sure.", 100, 200, 300, 400, 500, 1000, 1500, 2000, 2500, 3000, 4000, "5000+"];
+        const roomValues = ["I'm not sure.", 10, 20, 30, 40, 50, 100, 150, 200, 250, 300, "500+"];
+        const receptionValues = ["I'm not sure.", 2, 4, 6, 8, 10, 20, 30, 40, 50, 60, 80, 100, "100+"];
+    
+        var packageCount = 0;
+    
+        function updateElement(inputID, outputID, values) {
+            $('#' + outputID).html(values[$('#' + inputID).val()]);
+        };
+        function updatePackages() {
+            packageCount = Math.max(
+                $('#input-desks').val(),
+                $('#input-rooms').val(),
+                $('#input-receptions').val()
+            );
+            $('#output-packages').html(packageCount); // TODO make this a values call too, packages still linear
+        };
+        function updatePrice() {
+            // packageCount = $('#output-packages').val();
+            totalPrice = (packageCount * 3000);
+            extras = 0;
+            if ($('#check-whitelabel').prop("checked")) extras += 5000;
+            if ($('#check-stickers').prop("checked")) extras += (100 * packageCount);
+            if ($('#check-installation').prop("checked")) extras += (2000 * (packageCount / 2));
+    
+            totalPrice += extras;
+    
+            $('#output-price-total').html(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        };
+    
+    </script>
+    <script>
+    
+        $('#input-desks')[0].oninput = function () {
+            updateElement('input-desks', 'output-desks', deskValues);
+            updatePackages();
+            updatePrice();
+        };
+    
+        $('#input-rooms')[0].oninput = function () {
+            updateElement('input-rooms', 'output-rooms', roomValues);
+            updatePackages();
+            updatePrice();
+        };
+    
+        $('#input-receptions')[0].oninput = function () {
+            updateElement('input-receptions', 'output-receptions', receptionValues);
+            updatePackages();
+            updatePrice();
+        };
+        $('#input-desks')[0].oninput();
+        $('#input-rooms')[0].oninput();
+        $('#input-receptions')[0].oninput();
+        $('#check-whitelabel')[0].oninput = function () {
+            updatePrice();
+        };
+        $('#check-stickers')[0].oninput = function () {
+            updatePrice();
+        };
+        $('#check-installation')[0].oninput = function () {
+            updatePrice();
+        };
+
+    
+    </script>
